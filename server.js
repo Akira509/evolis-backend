@@ -27,13 +27,13 @@ app.use("/api", authRoutes);
 // connect to DB and start server
 const startServer = async () => {
   try {
-    await mongoose.connect(process.env.MONGODB_URI);
-    console.log("Connected with Database!");
-    console.log("Using DB:", mongoose.connection.name);
-
     app.listen(PORT, () => {
       console.log(`Server running on port ${PORT}`);
     });
+
+    await mongoose.connect(process.env.MONGODB_URI);
+    console.log("Connected with Database!");
+    console.log("Using DB:", mongoose.connection.name);
   } catch (err) {
     console.error("Failed to connect to DB", err.message);
     process.exit(1);
